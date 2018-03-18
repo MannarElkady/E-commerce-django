@@ -1,0 +1,9 @@
+body{
+    background: beige url("images/background2.jpg");
+}
+.navbar{
+    border-radius: 0;
+}
+.navbar-brand{
+    font-family: 'Satisfy', cursive;
+}
