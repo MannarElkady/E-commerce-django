@@ -1,18 +1,21 @@
 from django.db import models
-from decimal import Decimal
+from django.contrib.auth.models import User
 from django.conf import settings
 
 
 
+#class Cart(models.Model):
+#    TotalPay=models.FloatField(default=0)
+#    ItemsNumber = models.IntegerField(max_length=100, default=0)
+#    UserId=models.IntegerField(default=0)
+#    ItemsId=models.CharField(max_length=1000,default=" ")
+
+#    def __str__(self):
+#        return str(self.TotalPay)
+
 class Cart(models.Model):
-    TotalPay=models.FloatField(default=0)
-    ItemsNumber = models.IntegerField(max_length=100, default=0)
-    UserId=models.IntegerField(default=0)
-    ItemsId=models.CharField(max_length=1000,default=" ")
-
-    def __str__(self):
-        return str(self.TotalPay)
-
+    totalPay = models.FloatField(default=0)
+    userId = models.ForeignKey(User,on_delete=models.CASCADE)
 
 
 class Category(models.Model):
@@ -45,5 +48,12 @@ class Comment(models.Model):
     username= models.CharField(max_length=200)
     stars=models.CharField(max_length=5,null=True,default='',blank=True)
     graystars=models.CharField(max_length=5,null=True,default='xxxxx')
+
+    
+class Have(models.Model):
+    itemNumber = models.IntegerField(default=0)
+    cartId = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    itemId = models.ForeignKey(Item, on_delete=models.CASCADE, blank=True)
+
 
 
